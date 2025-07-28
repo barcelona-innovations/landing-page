@@ -100,3 +100,166 @@
     }
 
     /* Galería de imágenes */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Formulario contacto */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 500px;
+    }
+    input, textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #004d99;
+      box-shadow: 0 0 5px #004d99;
+    }
+    button {
+      background: #004d99;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background: #003366;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      background: #222;
+      color: #eee;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+      header {
+        flex-wrap: wrap;
+      }
+      main {
+        padding: 15px;
+      }
+      form {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="logo-excavator.png" alt="Logo Excavadora" />
+    Barcelona Creates New Innovations SL
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+      <li><a href="#productos">Productos</a></li>
+      <li><a href="#por-que-nosotros">¿Por qué Nosotros?</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="sobre-nosotros">
+    <h2>Sobre Nosotros</h2>
+    <p>Barcelona Creates New Innovations SL es su socio confiable para piezas nuevas y usadas para maquinaria pesada. Con años de experiencia en el mercado, ofrecemos calidad, rapidez y atención personalizada.</p>
+  </section>
+
+  <section id="productos">
+    <h2>Productos Destacados</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1581093588401-476d65f5ec6b?auto=format&fit=crop&w=400&q=80" alt="Pieza nueva 1" />
+      <img src="https://images.unsplash.com/photo-1602524815578-c8c86b1a8c2e?auto=format&fit=crop&w=400&q=80" alt="Pieza usada 1" />
+      <img src="https://images.unsplash.com/photo-1590080877777-e5a5be07eeb0?auto=format&fit=crop&w=400&q=80" alt="Pieza nueva 2" />
+      <img src="https://images.unsplash.com/photo-1550565118-ef1b17f19926?auto=format&fit=crop&w=400&q=80" alt="Pieza usada 2" />
+    </div>
+  </section>
+
+  <section id="por-que-nosotros">
+    <h2>¿Por qué Nosotros?</h2>
+    <ul>
+      <li>Amplia experiencia en piezas nuevas y usadas para maquinaria</li>
+      <li>Envíos rápidos y seguros en toda Europa</li>
+      <li>Asesoramiento personalizado para cada cliente</li>
+      <li>Precios competitivos y garantía de calidad</li>
+    </ul>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form onsubmit="return validarFormulario(event)">
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required />
+      <input type="email" id="email" name="email" placeholder="Correo electrónico" required />
+      <textarea id="mensaje" name="mensaje" rows="5" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar Mensaje</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Barcelona Creates New Innovations SL. Todos los derechos reservados.
+</footer>
+
+<script>
+  function validarFormulario(event) {
+    event.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+
+    if (!nombre || !email || !mensaje) {
+      alert('Por favor, complete todos los campos.');
+      return false;
+    }
+    // Validación básica email
+    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Por favor, ingrese un correo electrónico válido.');
+      return false;
+    }
+    alert('Mensaje enviado correctamente. ¡Gracias!');
+    // Aquí puedes añadir código para enviar el mensaje realmente, usando backend o servicios externos
+    document.querySelector('form').reset();
+    return false;
+  }
+</script>
+
+</body>
+</html>
+
